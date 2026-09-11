@@ -1,0 +1,81 @@
+# FastAPI
+
+fastapi==0.109.0
+uvicorn==0.27.0
+gunicorn
+python-multipart==0.0.6
+pydantic==2.7.0
+pydantic-settings==2.1.0
+
+fastapi
+uvicorn
+gunicorn
+python-multipart
+pydantic
+pydantic-settings
+
+# CrewAI and Agent Framework
+crewai
+crewai-tools
+langchain
+langchain-community
+langchain-groq
+
+# LlamaIndex
+llama-index
+llama-index-core
+llama-index-llms-groq
+llama-index-embeddings-huggingface
+llama-index-vector-stores-faiss
+
+# Database
+pymongo
+motor
+
+# Vector Store
+faiss-cpu
+sentence-transformers
+# NLP and Resume Parsing
+spacy
+pypdf2
+python-docx
+pdfplumber
+# textract
+
+# Email and Calendar
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+python-dotenv
+jinja2
+
+# Groq API
+groq
+
+# MCP (Model Context Protocol)
+# mcp==0.1.0
+mcp
+
+
+# Utilities
+requests
+ddgs  # Renamed from duckduckgo-search
+python-jose
+passlib
+bcrypt
+aiofiles
+pandas
+numpy
+python-dateutil
+
+# Logging and Monitoring
+loguru
+
+# Testing
+# pytest
+pytest
+pytest-asyncio
+httpx
+hf_xet
+ddgs

@@ -1,0 +1,34 @@
+# These are the files and directories to be ignored by Git
+.env
+credentials.json
+credentials_oauth.json
+test_system.py
+
+/recruit_venv
+
+/logs
+
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+lang_venv/
+
+# Uploads & generated files
+uploads/
+*.pdf
+*.zip
+
+# Vector DB / runtime data
+data/faiss_index
+data/*.pkl
+
+# OS files
+.DS_Store
+Thumbs.db

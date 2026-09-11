@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recruiting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--header-->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <!-- NEW LOGO IMAGE -->
+                    <img src="logo.png" alt="Hire AI Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Hire AI</h1>
+                        <p>Powered by Multi-Agent AI</p>
+                    </div>
+                </div>
+                <!-- This button will now stay on the far right -->
+                <label for="file-upload" class="upload-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <span>Upload Resume</span>
+                </label>
+                <input type="file" id="file-upload" accept=".pdf,.docx,.doc" style="display: none;">
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Area -->
+    <div id="notification" class="notification hidden"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-tab" data-tab="jobs">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>Jobs</span>
+                </button>
+                <button class="nav-tab" data-tab="candidates">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Candidates</span>
+                </button>
+                <button class="nav-tab" data-tab="interviews">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span>Interviews</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Loading Spinner -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card stat-blue">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <p class="stat-label">Total Candidates</p>
+                                <p class="stat-value" id="stat-candidates">0</p>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-purple">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <p class="stat-label">Active Jobs</p>
+                                <p class="stat-value" id="stat-jobs">0</p>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-green">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <p class="stat-label">Interviews</p>
+                                <p class="stat-value" id="stat-interviews">0</p>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-orange">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <p class="stat-label">Avg. Match Score</p>
+                                <p class="stat-value" id="stat-avg-score">0.0</p>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW Analytics Section -->
+                <div class="analytics-row"
+                    style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+
+
+                    <!-- System Status -->
+                    <div class="system-status">
+                        <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1e293b;">System
+                            Health</h2>
+                        <div class="status-grid" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div class="status-box status-green">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <p class="status-label">Agents Online</p>
+                                    <p class="status-value">12 Agents Active</p>
+                                </div>
+                            </div>
+                            <div class="status-box status-blue">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <p class="status-label">MCP Tools</p>
+                                    <p class="status-value">5 Tools Ready</p>
+                                </div>
+                            </div>
+                            <div class="status-box status-purple">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                                </svg>
+                                <div>
+                                    <p class="status-label">Vector Store</p>
+                                    <p class="status-value" id="stat-vectors-mini">0 Embeddings</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Tab -->
+            <div id="jobs-tab" class="tab-content">
+                <div class="tab-header">
+                    <div>
+                        <h2>Job Postings</h2>
+                        <span class="tab-count" id="jobs-count">0 total</span>
+                    </div>
+                    <button class="action-btn" id="post-job-btn">Post New Job</button>
+                </div>
+                <div id="jobs-container" class="items-container"></div>
+            </div>
+
+            <!-- Candidates Tab -->
+            <div id="candidates-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>Candidates</h2>
+                    <span class="tab-count" id="candidates-count">0 total</span>
+                </div>
+                <div id="candidates-container" class="items-container"></div>
+            </div>
+
+            <!-- Interviews Tab -->
+            <div id="interviews-tab" class="tab-content">
+                <div class="tab-header">
+                    <div>
+                        <h2>Scheduled Interviews</h2>
+                        <span class="tab-count" id="interviews-count">0 total</span>
+                    </div>
+                    <div class="tab-controls">
+                        <label
+                            style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: #4b5563;">
+                            <span>Show Completed</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="show-completed-interviews-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </label>
+                    </div>
+                </div>
+                <div id="interviews-container" class="items-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Post Job Modal -->
+    <div id="post-job-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-btn">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700;">Post New Job</h2>
+            <form id="post-job-form">
+                <div class="form-group">
+                    <label for="job-title">Job Title</label>
+                    <input type="text" id="job-title" required placeholder="e.g., Senior Software Engineer">
+                </div>
+                <div class="form-group">
+                    <label for="job-location">Location</label>
+                    <input type="text" id="job-location" required placeholder="e.g., San Francisco, CA">
+                </div>
+                <div class="form-group">
+                    <label for="employment-type">Employment Type</label>
+                    <input type="text" id="employment-type" required placeholder="e.g., Full-time">
+                </div>
+                <div class="form-group">
+                    <label for="job-description">Description</label>
+                    <textarea id="job-description" rows="4" required placeholder="Enter job description..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="required-skills">Required Skills (comma-separated)</label>
+                    <input type="text" id="required-skills" required placeholder="e.g., Python, React, SQL">
+                </div>
+                <button type="submit" class="submit-btn">Post Job</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

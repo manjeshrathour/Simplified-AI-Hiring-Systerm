@@ -1,0 +1,26 @@
+
+{
+    "job_id": "SAMPLE-001",
+    "title": "Senior Python Developer",
+    "description": "We are looking for an experienced Python developer with expertise in FastAPI, MongoDB, and AI/ML technologies. The ideal candidate will have strong experience building scalable backend systems and working with LLMs.",
+    "requirements": [
+        "5+ years of Python development experience",
+        "Experience with FastAPI or similar frameworks",
+        "Knowledge of MongoDB and database design",
+        "Familiarity with AI/ML concepts and LLMs",
+        "Strong problem-solving skills"
+    ],
+    "required_skills": [
+        "Python",
+        "FastAPI",
+        "MongoDB",
+        "RESTful APIs",
+        "Machine Learning",
+        "Docker"
+    ],
+    "experience_required": 5,
+    "location": "Remote",
+    "salary_range": "$120,000 - $160,000",
+    "department": "Engineering",
+    "employment_type": "full-time"
+}
