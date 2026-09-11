@@ -67,14 +67,7 @@ This system implements a **hierarchical agent architecture** with 6 specialized 
 
 ### Step-by-Step Setup
 
-#### 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/deepeshyadav760/multiagent_ai_hiring_system.git
-cd Agent_Recruiter_langchain
-```
-
-#### 2️⃣ Create Virtual Environment
+#### 1️⃣ Create Virtual Environment
 
 ```bash
 # Windows
